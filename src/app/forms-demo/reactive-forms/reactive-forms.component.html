@@ -1,0 +1,369 @@
+<div class="ui-g-12">
+    <div class="ui-g-6">
+        <p-table [value]="cars" [scrollable]="true" scrollHeight="185px" [scrollable]="true" scrollHeight="185px">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>RowIndex</th>
+                    <th>Vin</th>
+                    <th>Year</th>
+                    <th>Brand</th>
+                    <th>Color</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+                <tr>
+                    <td>{{ rowIndex + 1 }}</td>
+                    <td pEditableColumn>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="rowData.vin">
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{rowData.vin}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td pEditableColumn>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="rowData.year" required>
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{rowData.year}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td pEditableColumn>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <p-dropdown appendTo="body" [options]="brands" [(ngModel)]="rowData.brand" [style]="{'width':'100%'}">
+                                </p-dropdown>
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{rowData.brand}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td pEditableColumn>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="rowData.color">
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{rowData.color}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+        <br />
+        <br />
+    </div>
+    <div class="ui-g-6"></div><br />
+</div>
+<h1>Reactive Forms</h1>
+<form [formGroup]="registrationForm" (ngSubmit)="onFormSubmit()" appFocusFirstInvalidField>
+    <div class="ui-g">
+        <div class="ui-g-1"></div>
+        <div class="ui-g-5">
+            <div class="ui-g">
+                <div class="ui-g-4"><b>First Name : </b></div>
+                <div class="ui-g-8">
+                    <div class="ui-inputgroup">
+                        <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+                        <input type="text" pInputText placeholder="Enter First Name" formControlName="firstName"
+                            [ngClass]="{'has-error': registrationForm.get('firstName').errors && ( registrationForm.get('firstName').touched || registrationForm.get('firstName').dirty)}">
+                    </div>
+                    <span class="errMsg"
+                        *ngIf="registrationForm.get('firstName').errors && ( registrationForm.get('firstName').touched || registrationForm.get('firstName').dirty)">
+                        <span *ngIf="registrationForm.get('firstName').errors.required">
+                            First Name is required
+                        </span>
+                        <span
+                            *ngIf="registrationForm.get('firstName').errors.minlength || registrationForm.get('firstName').errors.maxlength">
+                            First Name must have greaterthan 9 characters and lessthan 20 characters
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-4"><b>Date Of Birth : </b></div>
+                <div class="ui-g-8">
+                    <p-calendar placeholder="calendar control" formControlName="dateOfBirth"></p-calendar>
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-4"><b>State : </b></div>
+                <div class="ui-g-8">
+                    <p-autoComplete [suggestions]="filteredStates" (completeMethod)="filterStatesOnComplete($event)"
+                        field="stateName" placeholder="autocomplete control" formControlName="state"></p-autoComplete>
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-4"><b>Choose Branch : </b></div>
+                <div class="ui-g-8">
+                    <p-checkbox name="branchName" value="ece" label="ECE "
+                        [formControl]="registrationForm.controls['branch']"></p-checkbox>&nbsp;
+                    <p-checkbox name="branchName" value="eee" label="EEE "
+                        [formControl]="registrationForm.controls['branch']"></p-checkbox>&nbsp;
+                    <p-checkbox name="branchName" value="cse" label="CSE "
+                        [formControl]="registrationForm.controls['branch']"></p-checkbox>&nbsp;
+                    <p-checkbox name="branchName" value="mech" label="MECH "
+                        [formControl]="registrationForm.controls['branch']"></p-checkbox>&nbsp;
+                </div>
+            </div>
+            <!-- <div class="ui-g">
+                <div class="ui-g-4"><b>Favourite Color : </b></div>
+                <div class="ui-g-8">
+                    <p-colorPicker ></p-colorPicker>
+                </div>
+            </div> -->
+            <div class="ui-g">
+                <div class="ui-g-4"><b>Enter Password : </b></div>
+                <div class="ui-g-8">
+                    <div><input pInputText type="password" formControlName="password" /></div>
+                    <span class="errMsg"
+                        *ngIf="registrationForm.controls.password.errors && registrationForm.controls.password.touched && registrationForm.controls.password.dirty">
+                        <span *ngIf="registrationForm.controls.password.errors?.passwordPatternFailed">
+                            should contain one uppercase, one lowercase, one digit, min 8
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-4"><b>Reenter Password : </b></div>
+                <div class="ui-g-8">
+                    <div><input pPassword type="password" formControlName="cnfrmPwd" /></div>
+                    <span class="errMsg"
+                        *ngIf="registrationForm.errors && registrationForm.touched && registrationForm.dirty">
+                        <span *ngIf="registrationForm.errors?.pwdCnfrmAreDiff">
+                            Password and confirm password should be same
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-4"><b>Pin Code : </b></div>
+                <div class="ui-g-8">
+                    <input type="text" pInputText pKeyFilter="int" placeholder="Allows Integers Only"
+                        formControlName="pinCode">
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-4"><b>Choose Courses : </b></div>
+                <div class="ui-g-8">
+                    <p-listbox [options]="coursesList" optionLabel="courseName" formControlName="courses"></p-listbox>
+                </div>
+            </div>
+        </div>
+        <div class="ui-g-5">
+            <div class="ui-g">
+                <div class="ui-g-4"><b>Last Name : </b></div>
+                <div class="ui-g-8">
+                    <div class="ui-inputgroup">
+                        <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+                        <input type="text" pInputText placeholder="Enter Last Name" formControlName="lastName">
+                    </div>
+                    <span class="errMsg"
+                        *ngIf="registrationForm.get('lastName').errors && registrationForm.get('lastName').touched ">
+                        <span *ngIf="registrationForm.get('lastName').errors?.customRequiredValidation">
+                            Last name is required
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-4"><b>Gender : </b></div>
+                <div class="ui-g-8">
+                    <p-radioButton name="gender" value="male" label="Male " formControlName="gender">
+                    </p-radioButton>&nbsp;&nbsp;
+                    <p-radioButton name="gender" value="female" label="Female " formControlName="gender">
+                    </p-radioButton>
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-4"><b>Select Country : </b></div>
+                <div class="ui-g-8">
+                    <p-dropdown [options]="countriesList" placeholder="Select a Country" optionLabel="counrtyName"
+                        formControlName="country">
+                    </p-dropdown>
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-4"><b>Specify Hobbies : </b></div>
+                <div class="ui-g-8">
+                    <p-chips placeholder="chips control" formControlName="hobbies"></p-chips>
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-4"><b>Email Address : </b></div>
+                <div class="ui-g-8">
+                    <div><input type="text" pInputText formControlName="email" /></div>
+                    <span class="errMsg"
+                        *ngIf="registrationForm.get('email').errors && registrationForm.get('email').touched && registrationForm.get('email').dirty">
+                        <span *ngIf="registrationForm.get('email').errors?.pattern">
+                            Email address is invalid
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-4"><b>Adhaar Number: </b></div>
+                <div class="ui-g-8">
+                    <p-inputMask mask="9999-9999-9999" placeholder="9999-9999-9999" formControlName="adhaarNumber">
+                    </p-inputMask>
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-4"><b>Known Languages : </b></div>
+                <div class="ui-g-8">
+                    <p-multiSelect [options]="languagesList" [panelStyle]="{minWidth:'12em'}"
+                        formControlName="languages">
+                    </p-multiSelect>
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-4"><b>Additional Information : </b></div>
+                <div class="ui-g-8">
+                    <textarea pInputTextarea [rows]="7" [cols]="30" formControlName="additionalInfo"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="ui-g-2"></div>
+    </div>
+    <div class="ui-g" style="border:1px solid black;">
+        <div class="ui-g-12">
+            <b>Present and Permanent Address are Different : </b>
+            <p-inputSwitch [(ngModel)]="addressCheckedVal" name="addrChecking" formControlName="sameAddressDecide">
+            </p-inputSwitch>
+        </div>
+        <div formGroupName="address">
+            <div class="ui-g">
+                <div class="ui-g-12"><b>Permanent Address : </b></div>
+                <div class="ui-g-6">
+                    <input type="text" pInputText placeholder="Enter Do.No." formControlName="permanentDrNo">
+                </div>
+                <div class="ui-g-6">
+                    <input type="text" pInputText placeholder="Enter Street Name" formControlName="permanentStreetName">
+                </div>
+            </div>
+            <div class="ui-g" *ngIf="!addressCheckedVal">
+                <div class="ui-g-12"><b>Present Address : </b></div>
+                <div class="ui-g-6">
+                    <input type="text" pInputText placeholder="Enter Do.No." formControlName="presentDrNo">
+                </div>
+                <div class="ui-g-6">
+                    <input type="text" pInputText placeholder="Enter Street Name" formControlName="presentStreetName">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui-g">
+        <div class="ui-g-offset-1 ui-g-2"><button pButton type="button" label="Add FormData"
+                (click)="displayJson()"></button></div>
+        <div class="ui-g-2"><button pButton type="button" label="Reset FormData" (click)="resetFormData()"></button>
+        </div>
+        <div class="ui-g-2 "><button pButton type="button" label="Add FormData to table"
+                (click)="addFormDataToTable()"></button></div>
+        <div class="ui-g-2"><button pButton type="submit" label="Submit Details"></button></div>
+        <div class="ui-g-2"><button pButton type="button" label="Submit to Another Page"
+                routerLink="/registrationDetails"></button></div>
+    </div>
+</form>
+<div class="ui-g">
+    <div class="ui-g-12">
+        <h3 class="first" style="text-align: center;">Your Details</h3>
+        <p-table [value]="formRecords" [columns]="tableColumns" [scrollable]="true" [style]="{width:'1500px'}">
+            <ng-template pTemplate="colgroup" let-tableColumns>
+                <colgroup>
+                    <col *ngFor="let col of tableColumns" style="width:150px;">
+                    <col style="width:150px;">
+                    <col style="width:150px;">
+                    <col style="width:150px;">
+                    <col style="width:150px;">
+                    <col style="width:150px;">
+                    <col style="width:150px;">
+                    <col style="width:150px;">
+                </colgroup>
+            </ng-template>
+            <ng-template pTemplate="header" let-tableColumns>
+                <tr>
+                    <th *ngFor="let col of tableColumns">{{col.header}}</th>
+                    <th>Sate</th>
+                    <th>courses</th>
+                    <th>country</th>
+                    <th>permanentDrNo</th>
+                    <th>permanentStreetName</th>
+                    <th>presentDrNo</th>
+                    <th>presentStreetName</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr>
+                    <td *ngFor="let col of columns">
+                        {{rowData[col.field]}}
+                    </td>
+                    <td>{{rowData.state.stateName}}</td>
+                    <td>{{rowData.courses.courseName}}</td>
+                    <td>{{rowData.country.counrtyName}}</td>
+                    <td>{{rowData.address.permanentDrNo}}</td>
+                    <td>{{rowData.address.permanentStreetName}}</td>
+                    <td>{{rowData.address.presentDrNo}}</td>
+                    <td>{{rowData.address.presentStreetName}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
+<!-- <div class="ui-g">
+    <div class="ui-g-12">
+        <h3 class="first" style="text-align: center;">Form Filling Details</h3>
+        <p-table [value]="formRecords">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>FirstName</th>
+                    <th>LastName</th>
+                    <th>dateOfBirth</th>
+                    <th>gender</th>
+                    <th>state</th>
+                    <th>branch</th>
+                    <th>password</th>
+                    <th>pinCode</th>
+                    <th>courses</th>
+                    <th>country</th>
+                    <th>permanentDrNo</th>
+                    <th>permanentStreetName</th>
+                    <th>presentDrNo</th>
+                    <th>presentStreetName</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-formRecord>
+                <tr>
+                    <td>{{formRecord.firstName}}</td>
+                    <td>{{formRecord.lastName}}</td>
+                    <td>{{formRecord.dateOfBirth}}</td>
+                    <td>{{formRecord.gender}}</td>
+                    <td>{{formRecord.state.stateName}}</td>
+                    <td>{{formRecord.branch}}</td>
+                    <td>{{formRecord.password}}</td>
+                    <td>{{formRecord.pinCode}}</td>
+                    <td>{{formRecord.courses.courseName}}</td>
+                    <td>{{formRecord.country.counrtyName}}</td>
+                    <td>{{formRecord.address.permanentDrNo}}</td>
+                    <td>{{formRecord.address.permanentStreetName}}</td>
+                    <td>{{formRecord.address.presentDrNo}}</td>
+                    <td>{{formRecord.address.presentStreetName}}</td>
+                </tr>
+            </ng-template>            
+        </p-table>
+    </div>
+</div> -->
+<pre *ngIf="displayJsonBool">
+    <p >{{registrationForm.value | json}}</p>
+</pre>
+
+
+<app-component-communication [reactiveFormGroup]="registrationForm" [reactiveDisplayJsonStatus]="displayJsonBool"
+    (changeChildBgColor)="ChangeBgColor()">
+</app-component-communication>

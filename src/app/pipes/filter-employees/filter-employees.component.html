@@ -1,0 +1,13 @@
+<div class="ui-g">
+    <div class="ui-g-offset-1 ui-g-11">
+        <input pInputText type="text" placeholder="search employee" [(ngModel)]="searchTerm" />
+    </div>
+    <div class="ui-g-offset-1 ui-g-11">
+        <button pButton type="button" (click)="changeEmployeeName()" label="Change employee name"></button>
+    </div>
+    <div class="ui-g-offset-1 ui-g-11">
+        <div *ngFor="let employee of employees | filterEmployees: searchTerm" (mousemove)="onMouseMove()">
+            <li>{{employee.Name | uppercase}} </li>
+        </div>
+    </div>
+</div>

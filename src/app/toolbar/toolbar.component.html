@@ -1,0 +1,15 @@
+<p-toolbar>
+    <div class="ui-toolbar-group-left">
+        <p-sidebar [(visible)]="display">
+            <img src="../../assets/2403.gif" />
+            <p-panelMenu [model]="items" [style]="{ width: '280px', 'margin-left': '-16px' }"></p-panelMenu>
+        </p-sidebar>
+        <button type="text" (click)="display = true" pButton icon="pi pi-bars"></button>&nbsp;
+        <!-- <a class="textStyles">Welcome To TrainingProject</a> -->
+    </div>
+    <div class="ui-toolbar-group-right">
+        <button pButton type="button" icon="pi pi-bell"></button>&nbsp;
+        <button pButton type="button" icon="pi pi-cog" class="ui-button-danger"></button>&nbsp;
+        <button pButton type="button" icon="pi pi-user" class="ui-button-success"></button>
+    </div>
+</p-toolbar>

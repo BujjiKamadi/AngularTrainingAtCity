@@ -1,0 +1,19 @@
+.ui-g {
+  margin: 20px;
+}
+:host ::ng-deep .ui-inputgroup .ui-inputtext .has-error {
+  background-color: #ffbaba;
+}
+.has-error {
+  // background-color: #FFBABA;
+  border: 1px solid #ffbaba;
+}
+.errMsg {
+  color: red;
+}
+h1 {
+  text-align: center;
+}
+:host ::ng-deep .ui-table table tbody > tr:nth-child(odd) {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}

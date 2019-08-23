@@ -1,0 +1,16 @@
+:host ::ng-deep body .ui-widget {
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  text-decoration: none;
+  margin-left: -16px !important;
+}
+.textStyles {
+  margin-left: 757px;
+  font-weight: bold;
+  font-family: monospace, -webkit-pictograph;
+  color: black;
+}
+:host ::ng-deep a.ui-menuitem-link.ui-corner-all.ng-tns-c4-2.ng-star-inserted.ui-state-active {
+  color: blue;
+  background-color: antiquewhite;
+}

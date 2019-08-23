@@ -1,0 +1,65 @@
+<div *ngIf="empDetails">
+    <form [formGroup]="editEmployeeForm" (ngSubmit)="updateEmployeedetails()">
+        <div class="ui-g-offset-2 ui-g-6">
+            <p-panel header="New Employee Registration" [toggleable]="true"
+                [style]="{'margin-bottom':'20px','margin-top': '40px'}">
+                <div class="ui-g">
+                    <div class="ui-g-3">
+                        <h4>Employee ID</h4>
+                    </div>
+                    <div class="ui-g-9">
+                        <input pInputText type="text" [value]="empDetails.id" disabled="true">
+                    </div>
+                </div>
+                <div class="ui-g">
+                    <div class="ui-g-3">
+                        <h4>Full Name</h4>
+                    </div>
+                    <div class="ui-g-9">
+                        <input pInputText type="text" formControlName="name">
+                    </div>
+                </div>
+                <div class="ui-g">
+                    <div class="ui-g-3">
+                        <h4>Salary</h4>
+                    </div>
+                    <div class="ui-g-9">
+                        <input pInputText type="text" formControlName="salary">
+                    </div>
+                </div>
+                <div class="ui-g">
+                    <div class="ui-g-3">
+                        <h4>Age</h4>
+                    </div>
+                    <div class="ui-g-9">
+                        <input pInputText type="text" pKeyFilter="num" formControlName="age">
+                    </div>
+                </div>
+                <div class="ui-g">
+                    <div class="ui-g-offset-3 ui-g-3">
+                        <p-button type="submit" label="Update Details" [disabled]="!editEmployeeForm.valid">
+                        </p-button>
+                    </div>
+                </div>
+            </p-panel>
+            <p-messages [value]="warningMsgs"></p-messages>
+        </div>
+    </form>
+</div>
+<!-- <div *ngIf="empDetails">
+    <form (ngOnSubmit)="onUpdate()">
+        <div>
+            <input pInputText type="text" [value]="empDetails.id" />
+        </div>
+        <div>
+            <input pInputText type="text" [value]="empDetails.employee_name" />
+        </div>
+        <div>
+            <input pInputText type="text" [value]="empDetails.employee_salary" />
+        </div>
+        <div>
+            <input pInputText type="text" [value]="empDetails.employee_age" />
+        </div>
+        <button pButton type="submit" label="Update Employee"></button>
+    </form>
+</div> -->

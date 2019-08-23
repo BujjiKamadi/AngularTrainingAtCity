@@ -1,0 +1,35 @@
+<form [formGroup]="productSuppliersForm">
+    <h4 align="center">Product Details</h4>
+    <div class="ui-g">
+        <div class="ui-g-offset-1 ui-g-3">
+            <h6>Product ID : </h6>
+            <input pInputText type="text" formControlName="productID" />
+        </div>
+        <div class="ui-g-3">
+            <h6>Product Name : </h6>
+            <input pInputText type="text" formControlName="productName" />
+        </div>
+        <div class="ui-g-3"><br><br>
+            <button pButton type="button" label="Add another supplier" (click)="addAnotherSupplier()"></button>
+        </div>
+    </div><br />
+    <h4 align="center">Suppliers Details</h4>
+    <div formArrayName="suppliers" *ngFor="let supplier of productSuppliersForm.get('suppliers').controls; let i=index;">
+        <div class="ui-g" [formGroupName]="i">
+            <div class="ui-g-3">
+                <input pInputText type="text" placeholder="Enter SupplierName" formControlName="supplierName" />
+            </div>
+            <div class="ui-g-3">
+                <input pInputText type="text" placeholder="Enter State" formControlName="state" />
+            </div>
+            <div class="ui-g-3">
+                <input pInputText type="text" placeholder="Enter Country" formControlName="country" />
+            </div>
+            <div class="ui-g-3">
+                <input pInputText type="text" placeholder="Enter Phone NUmber" formControlName="phoneNo" />
+            </div>
+        </div>
+    </div>
+    
+    <button pButton type="submit" label="Submit Details" (click)="submitDetaisl()"></button>
+</form>

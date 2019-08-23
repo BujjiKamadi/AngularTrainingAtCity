@@ -1,0 +1,56 @@
+<h4 style="text-align: center;">Registration Details</h4>
+<p-table [value]="tableRecords">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>dateOfBirth</th>
+            <th>gender</th>
+            <th>state</th>
+            <th>branch</th>
+            <th>password</th>
+            <th>pinCode</th>
+            <th>courses</th>
+            <th>country</th>
+            <th>hobbies</th>
+            <th>email</th>
+            <th>adhaar number</th>
+            <th>languages</th>
+            <th>additional info</th>
+            <!-- <th>permanentDrNo</th>
+            <th>permanentStreetName</th>
+            <th>presentDrNo</th>
+            <th>presentStreetName</th> -->
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-tableRecord>
+        <tr>
+            <td>{{tableRecord.firstName}}</td>
+            <td>{{tableRecord.lastName}}</td>
+            <td>{{tableRecord.dateOfBirth}}</td>
+            <td>{{tableRecord.gender}}</td>
+            <td>{{tableRecord.state.stateName}}</td>
+            <td>{{tableRecord.branch}}</td>
+            <td>{{tableRecord.password}}</td>
+            <td>{{tableRecord.pinCode}}</td>
+            <td>{{tableRecord.courses.courseName}}</td>
+            <td>{{tableRecord.country.counrtyName}}</td>
+            <td>
+                <p *ngFor="let hobby of tableRecord.hobbies">{{hobby}}</p>
+            </td>
+            <td>{{tableRecord.email}}</td>
+            <td>{{tableRecord.adhaarNumber}}</td>
+            <td>
+                <p *ngFor="let language of tableRecord.languages">{{language}}</p>
+            </td>
+            <td>{{tableRecord.additionalInfo}}</td>
+            <!--<td>{{tableRecord.address.permanentDrNo}}</td>
+            <td>{{tableRecord.address.permanentStreetName}}</td>
+            <td>{{tableRecord.address.presentDrNo}}</td>
+            <td>{{tableRecord.address.presentStreetName}}</td> -->
+        </tr>
+    </ng-template>
+</p-table>
+<pre>
+    {{getFormData.value | json }}
+</pre>

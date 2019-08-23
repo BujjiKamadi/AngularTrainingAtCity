@@ -1,0 +1,143 @@
+<h4>Built-in Pipes Demo</h4>
+<p>{{ birthday | date }}</p>
+
+<div class="ui-g">
+    <div class="ui-g-4">
+        <p-card>
+            <h4>Async Pipe</h4>
+            <p>Wait for 3 seconds....</p>
+            <p>{{ promiseData}} </p>
+            <p>{{ promise | async}} </p>
+            <h6>Observable data</h6>
+            Time: {{ time | async }}
+            <p>{{observableData}} </p>
+
+        </p-card>
+    </div>
+    <div class="ui-g-4">
+        <p-card>
+            <h4>Decimal Pipe</h4>
+            <p>{{e}} </p>
+            <p>{{e | number}} </p>
+            <p>{{e | number: '3.1-2' }} </p>
+            <p>{{e | number: '3.1-2' }} </p>
+            <p>{{e | number: '3.1-5' }} </p>
+            <p>{{e | number:'4.5-5':'fr'}} </p>
+        </p-card>
+    </div>
+    <div class="ui-g-4">
+        <p-card>
+            <h4>I18nSelectPipe</h4>
+            <input pInputText type="text" [(ngModel)]="gender">
+            <p>{{gender | i18nSelect: inviteMap}} </p>
+        </p-card>
+    </div>
+    <div class="ui-g-4">
+        <p-card>
+            <h4>LowerCase& ... Pipe</h4>
+            <input pInputText type="text" #name (keyup)="value=name.value" />
+            <p>{{value | lowercase}} </p>
+            <p>{{value | uppercase}} </p>
+            <p>{{value | titlecase}} </p>
+        </p-card>
+    </div>
+    <div class="ui-g-4">
+        <p-card>
+            <h4>Currency Pipe</h4>
+            <p>{{salary | currency}} </p>
+            <p>{{salary | currency : 'INR'}} </p>
+            <p>{{salary | currency : 'INR': 'code'}} </p>
+            <p>{{salary | currency : 'INR': 'symbol'}} </p>
+            <p>{{salary | currency : 'INR': 'code': '3.0-6'}} </p>
+            <p>{{salary | currency : 'INR': 'code': '5.2-6'}} </p>
+            <p>{{salary | currency : 'INR': 'code': '6.5-6'}} </p>
+        </p-card>
+    </div>
+    <div class="ui-g-4">
+        <p-card>
+            <h4>Json Pipe</h4>
+            <pre>{{ employee}} </pre>
+            <pre>{{ employee | json}} </pre>
+        </p-card>
+    </div>
+    <div class="ui-g-4">
+        <p-card>
+            <h4>Percent Pipe</h4>
+            <p> {{ number1 | percent}}</p>
+            <p>{{number1 | percent:'4.3-5'}}</p>
+        </p-card>
+    </div>
+    <div class="ui-g-4">
+        <p-card>
+            <h4>Date Pipe</h4>
+            {{today | date:'h:mm a z'}}
+            <p>{{today | date }} </p>
+            <p>{{today | date | uppercase}} </p>
+            <p>{{today | date : 'short'}} </p>
+            <p>{{today | date : 'shortDate'}} </p>
+            <p>{{today | date : 'shortTime'}} </p>
+        </p-card>
+    </div>
+    <div class="ui-g-4">
+        <p-card>
+            <h4>i18nPlural Pipe</h4>
+            <p>Stock value: {{stock}}</p>
+            <input pInputText #stockValue placeholder="enter stockvalue" />
+            <button pButton type="button" label="submit" (click)="stock=stockValue.value"></button>
+            <p>{{stock | i18nPlural : stockMapping}} </p>
+        </p-card>
+    </div>
+    <div class="ui-g-4">
+        <p-card>
+            <h4>keyvalue Pipe</h4>
+            <!-- <div *ngFor="let item of employeesObject">
+                <p>{{item}}</p>
+            </div> -->
+            <div *ngFor="let item of employeesObject | keyvalue">
+                <p>{{item.key}} - {{item.value}}</p>
+            </div>
+            <!-- <div *ngFor="let key of employeesMap.keys();let value of employeesMap.values()">
+                <p>{{key}} - {{value}}</p>
+            </div> -->
+            <div *ngFor="let item of employeesMap | keyvalue">
+                <p>{{item.key}} - {{item.value}}</p>
+            </div>
+        </p-card>
+    </div>
+    <div class="ui-g-4">
+        <p-card>
+            <h4>slice Pipe</h4>
+            <p>{{slicePipeMockData | slice : 3:7}} </p>
+            <p>{{slicePipeMockData | slice : 3:-2}} </p>
+            <p>{{slicePipeMockData | slice : 6}} </p>
+            <p>{{slicePipeMockArray | slice : 3:6}} </p>
+            <p>{{slicePipeMockArray | slice : 2:-4}} </p>
+            <ul>
+                <li *ngFor="let number of slicePipeMockArray | slice:3:6">{{number}}</li>
+            </ul>
+        </p-card>
+    </div>
+    <div class="ui-g-4">
+        <p-card>
+            <h4>Parameterizing pipe</h4>
+            <p>{{ birthday | date: format}}</p>
+            <button (click)="toggleFormat()">Change Format</button>&nbsp;
+            <button (click)="changeDate()">Change Date</button><br /><br />
+            <button (click)="toggle=!toggle;toggle ? 'shortDate' : 'fullDate';">Change Format </button>
+        </p-card>
+    </div>
+    <div class="ui-g-4">
+        <p-card>
+            <h4>Custom pipe</h4>
+            <p>{{strength | exponentialStrength}} </p>
+            <p>{{strength | exponentialStrength: 5}} </p>
+            <button (click)="changeStrength()">Change strength</button><br /><br />
+        </p-card>
+    </div>
+    <div class="ui-g-4">
+        <p-card>
+            <h4>Pure & Impure pipes</h4>
+            
+        </p-card>
+    </div>
+</div>

@@ -1,0 +1,119 @@
+<h4>Attribute Directuves</h4>
+<p appHighlight highLightColor="blue">Custom directive is added to change this element background color</p>
+<p appHighlight highLightColor="purple">Custom directive 2</p>
+<p appHighlight [highLightColor]="purple">Custom directive 3</p>
+<p appHighlight [highLightColor]="color">Custom directive 4</p>
+
+<div>
+    <input type="radio" name="colors" (click)="color='lightgreen'" />Green
+    <input type="radio" name="colors" (click)="color='blue'" />Blue
+    <input type="radio" name="colors" (click)="color='yellow'" />Yellow
+</div>
+<p [appHighlight]="color" defaultColor="violet">Highlight me!</p>
+<hr>
+
+<h4>Structural Directuves</h4>
+<div class="ui-g">
+    <div class="ui-g-6">
+        <div *ngFor="let hero of heroesList; let i=index; let odd=odd; trackBy: trackById ">
+            ({{hero.id}}) {{hero.name}}, ({{i}}), ({{odd}}) , ({{trackBy}})
+        </div>
+    </div>
+    <div class="ui-g-6">
+        <ng-template ngFor let-hero [ngForOf]="heroesList" let-i="index" let-odd="odd" [ngForTrackBy]="trackById">
+            <div>({{hero.id}}) {{hero.name}}</div>
+        </ng-template>
+    </div>
+</div>
+<div>choose hero emotion: <br />
+    <input type="radio" name="emotion" (click)="hero.emotion='happy'">happy
+    <input type="radio" name="emotion" (click)="hero.emotion='sad'">sad
+    <input type="radio" name="emotion" (click)="hero.emotion='confused'">confused
+</div>
+
+<div *ngIf="hero" class="name">{{hero.name}}</div>
+<ng-template [ngIf]="hero">
+    <div class="name">{{hero.name}}</div>
+</ng-template>
+<div [ngSwitch]="hero?.emotion">
+    <app-happy-hero *ngSwitchCase="'happy'" [hero]="hero"></app-happy-hero>
+    <app-sad-hero *ngSwitchCase="'sad'" [hero]="hero"></app-sad-hero>
+    <app-confused-hero *ngSwitchCase="'confused'" [hero]="hero"></app-confused-hero>
+    <app-unknown-hero *ngSwicthDefault [hero]="hero"></app-unknown-hero>
+</div>
+<div [ngSwitch]="hero?.emotion">
+    <ng-template [ngSwitchCase]="'happy'">
+        <app-happy-hero [hero]="hero"></app-happy-hero>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'sad'">
+        <app-sad-hero [hero]="hero"></app-sad-hero>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'confused'">
+        <app-confused-hero [hero]="hero"></app-confused-hero>
+    </ng-template>
+    <ng-template ngSwicthDefault>
+        <app-unknown-hero [hero]="hero"></app-unknown-hero>
+    </ng-template>
+</div>
+<p *ngIf="true">
+    Expression is true and ngIf is true.
+    This paragraph is in the DOM.
+</p>
+<ng-template [ngIf]="true">
+    <p>
+        Expression is true and ngIf is true.
+        This paragraph is in the DOM.
+    </p>
+</ng-template>
+<p *ngIf="false" style="color: red;">
+    Expression is false and ngIf is false.
+    This paragraph is not in the DOM.
+</p>
+<hr />
+
+<h4>Custom Unless Directive</h4>
+<p *appUnless="false">
+    (A) This paragraph is displayed because the condition is false.
+</p>
+<p *appUnless="true">
+    (B) Although the condition is true,
+    this paragraph is displayed because appUnless is set to false.
+</p>
+<hr />
+
+<h4>NgLoopDirective Custom directive</h4>
+<div *appNgLoop="let number of numbers; index as i">
+    ({{number}}) Loop this element with index-{{i}}
+</div>
+<hr />
+
+<p-inputSwitch [(ngModel)]="checked"></p-inputSwitch><br />
+<p-dropdown [options]="heroesList" optionLabel="name" placeholder="Select a Hero" *ngIf="checked"></p-dropdown>
+<br />
+<select *ngIf="checked" [(ngModel)]="selectedHero">
+    <!-- <option *ngFor="let hero of heroesList" [value]="hero">{{hero.name}}</option> -->
+    <ng-template ngFor let-hero [ngForOf]="heroesList">
+        <option [ngValue]="hero">{{hero.name}} </option>
+    </ng-template>
+</select>
+<div [ngSwitch]="selectedHero.name">
+    <div *ngSwitchCase="'Mr.Nice'">
+        ({{selectedHero.id}}), {{selectedHero.name}}
+    </div>
+    <div *ngSwitchCase="'Narco'">
+        ({{selectedHero.id}}), {{selectedHero.name}}
+    </div>
+    <div *ngSwitchCase="'Bombasto'">
+        ({{selectedHero.id}}), {{selectedHero.name}}
+    </div>
+    <div *ngSwitchCase="'Celeritas'">
+        ({{selectedHero.id}}), {{selectedHero.name}}
+    </div>
+</div>
+<div [ngSwitch]="selectedHero.name">
+    <ng-container *ngFor="let hero of heroesList">
+        <div *ngSwitchCase="hero.name">
+            ({{selectedHero.id}}), {{selectedHero.name}}
+        </div>
+    </ng-container>
+</div>

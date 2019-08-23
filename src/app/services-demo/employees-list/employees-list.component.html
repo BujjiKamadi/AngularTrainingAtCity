@@ -1,0 +1,11 @@
+<div class="ui-g">
+    <div class="ui-g-4" *ngFor="let employee of employees">
+        <p-card >
+            <a [routerLink]="['/employee', employee.ID]">get Employee Full Details</a>
+            <pre><b>ID:          </b>{{employee.ID}}</pre>
+            <pre><b>Name:        </b>{{employee.Name}}</pre>
+            <pre><b>Location:    </b>{{employee.Location}}</pre>
+            <pre><b>Designation: </b>{{employee.Designation}}</pre>
+        </p-card>
+    </div>
+</div>

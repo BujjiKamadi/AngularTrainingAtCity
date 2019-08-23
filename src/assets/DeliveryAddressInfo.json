@@ -1,0 +1,306 @@
+[  
+    {  
+       "customGroupID":1,
+       "customGroupName":"primary",
+       "addressAndContacts":[  
+          {  
+             "billingPartyID":110,
+             "billingPartyName":"96 Auto Sale (96DE1)",
+             "deliveryAddresses":[  
+                {  
+                   "addressId":110,
+                   "parentId":110,
+                   "code":"96DE1",
+                   "name":"96 Auto Sale",
+                   "legalName":"96 Auto Sale",
+                   "roleType":"Bill To",
+                   "partyStatus":"Active",
+                   "addressLineOne":"5640 Tireman St",
+                   "addressLineTwo":"",
+                   "addressLineThree":null,
+                   "addressLineFour":null,
+                   "city":"Detroit",
+                   "state":"MI",
+                   "zipCode":"482043727",
+                   "country":"USA",
+                   "addressType":"Physical"
+                },
+                {  
+                  "addressId":111,
+                  "parentId":110,
+                  "code":"96DE1",
+                  "name":"96 Auto Sale",
+                  "legalName":"96 Auto Sale",
+                  "roleType":"Bill To",
+                  "partyStatus":"Active",
+                  "addressLineOne":"5640 Tireman St",
+                  "addressLineTwo":"",
+                  "addressLineThree":null,
+                  "addressLineFour":null,
+                  "city":"Detroit",
+                  "state":"MI",
+                  "zipCode":"482043727",
+                  "country":"USA",
+                  "addressType":"Physical"
+               }
+             ],
+             "emailContacts":null,
+             "thirdPartyDetail":{  
+                "accountName":"Metal Impact Llc",
+                "partyRoleAssociationID":null,
+                "selectedPartyId":15864,
+                "mainPartyId":110,
+                "billingThirdPartyWebSiteURL":null,
+                "billingThirdPartyWebSiteURLAddressId":null,
+                "customerCode":"MENED8"
+             },
+             "thirdPartyContacts":[  
+                {  
+                   "contactId":205097,
+                   "firstName":"Test3",
+                   "lastName":"Test4",
+                   "contactTypeID":206683,
+                   "preferenceType":null,
+                   "contactTypeDTOs":null,
+                   "email":null,
+                   "emails":[  
+                      {  
+                         "emailAddress":"test3@gmail.com",
+                         "emailId":1874179,
+                         "isEmailRemoved":false
+                      }
+                   ],
+                   "telephone":{  
+                      "telephoneID":1882453,
+                      "extension":"",
+                      "telephoneAreaCode":"737",
+                      "telephoneNumber":"3736",
+                      "country":{  
+                         "countryCode":"USA",
+                         "countryName":"USA",
+                         "countryCallingCode":"+1"
+                      }
+                   },
+                   "thirdPartyContactStatus":"Active",
+                   "isEdited":null
+                },
+                {  
+                   "contactId":205092,
+                   "firstName":"Testfname",
+                   "lastName":"Testlname",
+                   "contactTypeID":206678,
+                   "preferenceType":null,
+                   "contactTypeDTOs":null,
+                   "email":null,
+                   "emails":[  
+                      {  
+                         "emailAddress":"test@gmail.com",
+                         "emailId":1789816,
+                         "isEmailRemoved":false
+                      },
+                      {  
+                         "emailAddress":"test2@gmail.com",
+                         "emailId":1876082,
+                         "isEmailRemoved":false
+                      }
+                   ],
+                   "telephone":{  
+                      "telephoneID":1882452,
+                      "extension":"",
+                      "telephoneAreaCode":"343",
+                      "telephoneNumber":"5252565",
+                      "country":{  
+                         "countryCode":"USA",
+                         "countryName":"USA",
+                         "countryCallingCode":"+1"
+                      }
+                   },
+                   "thirdPartyContactStatus":"Active",
+                   "isEdited":null
+                }
+             ]
+          },
+          {  
+             "billingPartyID":22,
+             "billingPartyName":"96 Auto Sale-LTL (96DE3)",
+             "deliveryAddresses":[  
+                {  
+                   "addressId":22,
+                   "parentId":110,
+                   "code":"96DE3",
+                   "name":"96 Auto Sale-LTL",
+                   "legalName":"96 Auto Sale",
+                   "roleType":"Bill To",
+                   "partyStatus":"Active",
+                   "addressLineOne":"5640 Tireman St",
+                   "addressLineTwo":"",
+                   "addressLineThree":null,
+                   "addressLineFour":null,
+                   "city":"Detroit",
+                   "state":"MI",
+                   "zipCode":"482043727",
+                   "country":"USA",
+                   "addressType":"Physical"
+                }
+             ],
+             "emailContacts":null,
+             "thirdPartyDetail":null,
+             "thirdPartyContacts":null
+          }
+       ],
+       "emailSubjectLineAndAttachment":null,
+       "remittanceAddressOverrideIndicator":"Y"
+    },
+    {  
+      "customGroupID":2,
+      "customGroupName":"primary",
+      "addressAndContacts":[  
+         {  
+            "billingPartyID":110,
+            "billingPartyName":"96 Auto Sale (96DE1)",
+            "deliveryAddresses":[  
+               {  
+                  "addressId":110,
+                  "parentId":110,
+                  "code":"96DE1",
+                  "name":"96 Auto Sale",
+                  "legalName":"96 Auto Sale",
+                  "roleType":"Bill To",
+                  "partyStatus":"Active",
+                  "addressLineOne":"5640 Tireman St",
+                  "addressLineTwo":"sample",
+                  "addressLineThree":null,
+                  "addressLineFour":null,
+                  "city":"Detroit",
+                  "state":"MI",
+                  "zipCode":"482043727",
+                  "country":"USA",
+                  "addressType":"Physical"
+               },
+               {  
+                 "addressId":111,
+                 "parentId":110,
+                 "code":"96DE1",
+                 "name":"96 Auto Sale",
+                 "legalName":"96 Auto Sale",
+                 "roleType":"Bill To",
+                 "partyStatus":"Active",
+                 "addressLineOne":"5640 Tireman St",
+                 "addressLineTwo":"",
+                 "addressLineThree":null,
+                 "addressLineFour":null,
+                 "city":"Detroit",
+                 "state":"MI",
+                 "zipCode":"482043727",
+                 "country":"USA",
+                 "addressType":"Physical"
+              }
+            ],
+            "emailContacts":null,
+            "thirdPartyDetail":{  
+               "accountName":"Metal Impact Llc",
+               "partyRoleAssociationID":null,
+               "selectedPartyId":15864,
+               "mainPartyId":110,
+               "billingThirdPartyWebSiteURL":null,
+               "billingThirdPartyWebSiteURLAddressId":null,
+               "customerCode":"MENED8"
+            },
+            "thirdPartyContacts":[  
+               {  
+                  "contactId":205097,
+                  "firstName":"Test3",
+                  "lastName":"Test4",
+                  "contactTypeID":206683,
+                  "preferenceType":null,
+                  "contactTypeDTOs":null,
+                  "email":null,
+                  "emails":[  
+                     {  
+                        "emailAddress":"test3@gmail.com",
+                        "emailId":1874179,
+                        "isEmailRemoved":false
+                     }
+                  ],
+                  "telephone":{  
+                     "telephoneID":1882453,
+                     "extension":"",
+                     "telephoneAreaCode":"737",
+                     "telephoneNumber":"3736",
+                     "country":{  
+                        "countryCode":"USA",
+                        "countryName":"USA",
+                        "countryCallingCode":"+1"
+                     }
+                  },
+                  "thirdPartyContactStatus":"Active",
+                  "isEdited":null
+               },
+               {  
+                  "contactId":205092,
+                  "firstName":"Testfname",
+                  "lastName":"Testlname",
+                  "contactTypeID":206678,
+                  "preferenceType":null,
+                  "contactTypeDTOs":null,
+                  "email":null,
+                  "emails":[  
+                     {  
+                        "emailAddress":"test@gmail.com",
+                        "emailId":1789816,
+                        "isEmailRemoved":false
+                     },
+                     {  
+                        "emailAddress":"test2@gmail.com",
+                        "emailId":1876082,
+                        "isEmailRemoved":false
+                     }
+                  ],
+                  "telephone":{  
+                     "telephoneID":1882452,
+                     "extension":"",
+                     "telephoneAreaCode":"343",
+                     "telephoneNumber":"5252565",
+                     "country":{  
+                        "countryCode":"USA",
+                        "countryName":"USA",
+                        "countryCallingCode":"+1"
+                     }
+                  },
+                  "thirdPartyContactStatus":"Active",
+                  "isEdited":null
+               }
+            ]
+         },
+         {  
+            "billingPartyID":22,
+            "billingPartyName":"96 Auto Sale-LTL (96DE3)",
+            "deliveryAddresses":[  
+               {  
+                  "addressId":22,
+                  "parentId":110,
+                  "code":"96DE3",
+                  "name":"96 Auto Sale-LTL",
+                  "legalName":"96 Auto Sale",
+                  "roleType":"Bill To",
+                  "partyStatus":"Active",
+                  "addressLineOne":"5640 Tireman St",
+                  "addressLineTwo":"",
+                  "addressLineThree":null,
+                  "addressLineFour":null,
+                  "city":"Detroit",
+                  "state":"MI",
+                  "zipCode":"482043727",
+                  "country":"USA",
+                  "addressType":"Physical"
+               }
+            ],
+            "emailContacts":null,
+            "thirdPartyDetail":null,
+            "thirdPartyContacts":null
+         }
+      ],
+      "emailSubjectLineAndAttachment":null,
+      "remittanceAddressOverrideIndicator":"Y"
+   }
+ ]

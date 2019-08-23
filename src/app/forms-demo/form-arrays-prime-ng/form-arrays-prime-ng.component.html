@@ -1,0 +1,36 @@
+<div *ngIf="Group">
+    <div class="ui-g-6">
+        <form [formGroup]="Group">
+            <div formArrayName="formGroupArray">
+                <p-table [value]="Format.controls">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Origin</th>
+                            <th>Destination</th>
+                            <th>Index</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-data let-rowIndex="rowIndex">
+                        <!-- <tr [formGroupName]="rowIndex"> -->
+                        <tr [formGroupName]="recordIndex">
+                            <td>
+                                <input pInputText type="text" formControlName="origin">
+                            </td>
+                            <td>
+                                <input pInputText type="text" formControlName="destination">
+                            </td>
+                            <td>
+                                <input pInputText type="text" formControlName="index">
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="ui-g-12">
+    <p-button label="Add row" (click)="addRow()"></p-button>
+    <pre>{{ Group.value | json}}</pre>
+</div>
+<br />

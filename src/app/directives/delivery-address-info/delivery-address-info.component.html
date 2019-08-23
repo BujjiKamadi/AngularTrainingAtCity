@@ -1,0 +1,71 @@
+<div class="ui-g">
+    <div class="ui-g-12">
+        <h3 class="first" style="text-align: center;">Delivery Address Info</h3>
+        <p-table [value]="addressAndContacts">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>addressId</th>
+                    <th>AddressLineOne</th>
+                    <th>addressLineTwo</th>
+                    <th>addressLineThree</th>
+                    <th>addressLineFour</th>
+                    <th>zipCode</th>
+                    <th>city</th>
+                    <th>country</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData>
+                <!-- <tr>
+                    <td>{{rowIndex}}</td> 
+                    <td>{{rowData[0]}} </td>
+                    <td>{{rowData.deliveryAddresses | json}} </td>
+                </tr>-->
+                <tr *ngFor="let deliveryAddress of rowData.deliveryAddresses">
+                    <td>{{deliveryAddress.addressId}}</td>
+                    <td>{{deliveryAddress.addressLineOne}}</td>
+                    <td>{{deliveryAddress.addressLineTwo}}</td>
+                    <td>{{deliveryAddress.addressLineThree}}</td>
+                    <td>{{deliveryAddress.addressLineFour}}</td>
+                    <td>{{deliveryAddress.zipCode}}</td>
+                    <td>{{deliveryAddress.city}}</td>
+                    <td>{{deliveryAddress.country}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
+<div class="ui-g">
+    <div class="ui-g-12">
+        <h3 class="first" style="text-align: center;">Delivery Address Info</h3>
+        <p-table [value]="deliveryAddressInfo">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>customGroupID</th>
+                    <th>addressId</th>
+                    <th>AddressLineOne</th>
+                    <th>addressLineTwo</th>
+                    <th>addressLineThree</th>
+                    <th>addressLineFour</th>
+                    <th>zipCode</th>
+                    <th>city</th>
+                    <th>country</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData1>
+                <ng-container *ngFor="let addressAndContact of rowData1.addressAndContacts">                       
+                    <tr *ngFor="let deliveryAddress of addressAndContact.deliveryAddresses">
+                        <td>{{rowData1.customGroupID}} </td>
+                        <td>{{deliveryAddress.addressId}}</td>
+                        <td>{{deliveryAddress.addressLineOne}}</td>
+                        <td>{{deliveryAddress.addressLineTwo}}</td>
+                        <td>{{deliveryAddress.addressLineThree}}</td>
+                        <td>{{deliveryAddress.addressLineFour}}</td>
+                        <td>{{deliveryAddress.zipCode}}</td>
+                        <td>{{deliveryAddress.city}}</td>
+                        <td>{{deliveryAddress.country}}</td>
+                    </tr>
+                </ng-container>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="ui-g" *ngIf="!employee">
+    <div class="ui-g-offset-2 ui-g-5">
+        <p-card>
+            <p>{{ statusMessage }}</p>
+        </p-card>
+    </div>
+</div>
+<div class="ui-g" *ngIf="employee">
+    <div class="ui-g-offset-2 ui-g-5">
+        <p-card>
+            <pre><b>ID:          </b>{{employee.ID}}</pre>
+            <pre><b>Name:        </b>{{employee.Name}}</pre>
+            <pre><b>Location:    </b>{{employee.Location}}</pre>
+            <pre><b>Designation: </b>{{employee.Designation}}</pre>
+        </p-card>
+    </div>
+</div>

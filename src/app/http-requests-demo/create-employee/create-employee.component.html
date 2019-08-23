@@ -1,0 +1,44 @@
+<form [formGroup]="createEmployeeForm" (ngSubmit)="CreateNewEmployee()">
+    <div class="ui-g-offset-2 ui-g-6">
+        <p-panel header="New Employee Registration" [toggleable]="true"
+            [style]="{'margin-bottom':'20px','margin-top': '40px'}">
+            <div class="ui-g">
+                <div class="ui-g-3">
+                    <h4>Full Name</h4>
+                </div>
+                <div class="ui-g-9">
+                    <input pInputText type="text" placeholder="Enter ur name" pTooltip="Enter your username"
+                        formControlName="name">
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-3">
+                    <h4>Salary</h4>
+                </div>
+                <div class="ui-g-9">
+                    <input pInputText type="text" pKeyFilter="num" placeholder="enter salary"
+                        pTooltip="Enter your salary" formControlName="salary">
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-3">
+                    <h4>Age</h4>
+                </div>
+                <div class="ui-g-9">
+                    <input pInputText type="text" pKeyFilter="num" placeholder="enter age" pTooltip="Enter your age"
+                        formControlName="age">
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-offset-3 ui-g-3">
+                    <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+                    <p-button type="button" (click)="confirmToReset()" [disabled]="!createEmployeeForm.dirty" label="Reset all my details"></p-button>
+                </div>
+                <div class=" ui-g-3">
+                    <p-button type="submit" label="Submit Details" [disabled]="!createEmployeeForm.valid"></p-button>
+                </div>
+            </div>
+        </p-panel>
+        <p-messages [value]="warningMsgs"></p-messages>
+    </div>
+</form>

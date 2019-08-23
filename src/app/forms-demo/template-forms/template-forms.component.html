@@ -1,0 +1,213 @@
+<h1>Template Registration Form</h1>
+<form #registrationForm="ngForm" [appPwdMismatchValidator]="['pwd', 'cnfrmPwd']">
+    <div class="ui-g">
+        <div class="ui-g-offset-1 ui-g-5">
+            <div class="ui-g">
+                <div class="ui-g-4"><b>First Name : </b></div>
+                <div class="ui-g-8">
+                    <div>
+                        <input type="text" name="firstName" pInputText placeholder="Enter First Name"
+                            #firstNameCntrl="ngModel" [(ngModel)]="firstName" required minlength="9" maxlength="20" />
+                    </div>
+                    <span class="errorMsg" *ngIf="firstNameCntrl.touched && firstNameCntrl.invalid">
+                        <span *ngIf="firstNameCntrl.errors.required"> First name can't be blank</span>
+                        <span *ngIf="firstNameCntrl.errors.minlength">This fiels accepts min 9char's </span>
+                    </span>
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-4"><b>Date Of Birth : </b></div>
+                <div class="ui-g-8">
+                    <p-calendar placeholder="calendar control" #dateOfBirthCntrl="ngModel" [(ngModel)]="dateOfBirth"
+                        name="dateOfBirth"></p-calendar>
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-4"><b>State : </b></div>
+                <div class="ui-g-8">
+                    <p-autoComplete [suggestions]="filteredStates" (completeMethod)="filterStatesOnComplete($event)"
+                        field="stateName" placeholder="autocomplete control" name="state" [(ngModel)]="state"
+                        #stateCntrl="ngModel"></p-autoComplete>
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-4"><b>Choose Branch : </b></div>
+                <div class="ui-g-8">
+                    <p-checkbox name="branchName" value="ece" label="ECE " [(ngModel)]="branchName"></p-checkbox>&nbsp;
+                    <p-checkbox name="branchName" value="eee" label="EEE " [(ngModel)]="branchName"></p-checkbox>&nbsp;
+                    <p-checkbox name="branchName" value="cse" label="CSE " [(ngModel)]="branchName"></p-checkbox>&nbsp;
+                    <p-checkbox name="branchName" value="mech" label="MECH " [(ngModel)]="branchName"></p-checkbox>
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-4"><b>Enter Password : </b></div>
+                <div class="ui-g-8">
+                    <div><input pInputText type="password" name="pwd" [(ngModel)]="pwd" #pwdCntrl="ngModel"
+                            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,20}$" /></div>
+                    <span class="errorMsg" *ngIf="pwdCntrl.touched && pwdCntrl.invalid">
+                        <span *ngIf="pwdCntrl.errors.pattern">should contain one uppercase, one lowercase, one digit,
+                            min 8</span>
+                    </span>
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-4"><b>Reenter Password : </b></div>
+                <div class="ui-g-8">
+                    <div><input pPassword type="password" name="cnfrmPwd" [(ngModel)]="cnfrmPwd"
+                            #cnfrmPwdCntrl="ngModel" appPwdPatternValidator appMismatchValidator="pwd" /></div>
+                    <span class="errorMsg" *ngIf="cnfrmPwdCntrl.touched && cnfrmPwdCntrl.invalid">
+                        <!-- <span *ngIf="cnfrmPwdCntrl.errors.pwdPatternFailed">should contain one uppercase, one lowercase,
+                            one digit, min 8</span>
+                        <span *ngIf="cnfrmPwdCntrl.errors.pwdMisMatch">Password and confirm password should be
+                            same</span> -->
+                        <span *ngIf="registrationForm.errors?.misMatch">Passwords must
+                            match</span>
+                    </span>
+                    <!-- {{ registrationForm.form.errors.PwdMisMatchFound }} -->
+                    <!-- <span class="errorMsg" *ngIf="registrationForm.errors.PwdMisMatchFound">*pwd cpwd should be same</span> -->
+                    <div *ngIf="cnfrmPwdCntrl.errors?.mustMatch">Passwords must match fromgroup</div>
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-4"><b>Pin Code : </b></div>
+                <div class="ui-g-8">
+                    <input type="text" pInputText pKeyFilter="int" placeholder="Allows Integers Only" name="pinCode"
+                        [(ngModel)]="pinCode" #pinCodeCntrl="ngModel">
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-4"><b>Choose Courses : </b></div>
+                <div class="ui-g-8">
+                    <p-listbox [options]="coursesList" optionLabel="courseName" name="courses" [(ngModel)]="courses"
+                        #coursesCntrl="ngModel"></p-listbox>
+                </div>
+            </div>
+        </div>
+        <div class="ui-g-5 ">
+            <div class="ui-g">
+                <div class="ui-g-4"><b>Last Name : </b></div>
+                <div class="ui-g-8">
+                    <div>
+                        <input type="text" name="lastName" pInputText placeholder="Enter Last Name"
+                            #lastNameCntrl="ngModel" [(ngModel)]="lastName" required minlength="9" maxlength="20" />
+                    </div>
+                    <span class="errorMsg" *ngIf="lastNameCntrl.touched && lastNameCntrl.invalid">
+                        <span *ngIf="lastNameCntrl.errors.required"> Last name can't be blank</span>
+                        <span *ngIf="lastNameCntrl.errors.minlength">This fiels accepts min 9char's </span>
+                    </span>
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-4"><b>Gender : </b></div>
+                <div class="ui-g-8">
+                    <p-radioButton name="gender" value="male" label="Male " [(ngModel)]="gender" #genderCntrl="ngModel">
+                    </p-radioButton>&nbsp;&nbsp;
+                    <p-radioButton name="gender" value="female" label="Female " [(ngModel)]="gender"
+                        #genderCntrl="ngModel">
+                    </p-radioButton>
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-4"><b>Select Country : </b></div>
+                <div class="ui-g-8">
+                    <p-dropdown [options]="countriesList" placeholder="Select a Country" optionLabel="counrtyName"
+                        name="country" [(ngModel)]="country" #countryCntrl="ngModel">
+                    </p-dropdown>
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-4"><b>Specify Hobbies : </b></div>
+                <div class="ui-g-8">
+                    <p-chips placeholder="chips control" [(ngModel)]="hobbies" name="hobbies" #hobbiesCntrl="ngModel">
+                    </p-chips>
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-4"><b>Email Address : </b></div>
+                <div class="ui-g-8">
+                    <div><input type="text" pInputText name="email" [(ngModel)]="email" #emailCntrl="ngModel" /></div>
+                    <span class="errMsg" *ngIf="emailCntrl.touched && emailCntrl.invalid && emailCntrl.errors.pattern">
+                        Email address is invalid
+                    </span>
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-4"><b>Adhaar Number: </b></div>
+                <div class="ui-g-8">
+                    <p-inputMask mask="9999-9999-9999" placeholder="9999-9999-9999" name="adhaarNumber"
+                        [(ngModel)]="adhaarNumber" #adhaarNoCntrl="ngModel">
+                    </p-inputMask>
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-4"><b>Known Languages : </b></div>
+                <div class="ui-g-8">
+                    <p-multiSelect [options]="languagesList" [panelStyle]="{minWidth:'12em'}" name="languages"
+                        [(ngModel)]="languages" #languagesCntrl="ngModel">
+                    </p-multiSelect>
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-4"><b>Additional Information : </b></div>
+                <div class="ui-g-8">
+                    <textarea pInputTextarea [rows]="7" [cols]="30" name="additionalInfo" [(ngModel)]="additionalInfo"
+                        #additionalInfoCntrl="ngModel"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui-g">
+        <div class="ui-g-offset-1 ui-g-3"><button pButton type="button" label="Add FormData"
+                (click)="displayJson(registrationForm)"></button></div>
+        <!-- <div class="ui-g-3"><button pButton type="button" label="Reset FormData"
+                (click)="registrationForm.reset()"></button>
+        </div> 
+        <button pButton type="reset" label="Reset FormData"></button>-->
+        <div class="ui-g-3"><button pButton type="button" label="Reset FormData"
+                (click)="resetFormData(registrationForm)"></button>
+        </div>
+        <div class="ui-g-3 "><button pButton type="button" label="Add FormData to table"
+                (click)="addFormDataToTable(registrationForm)"></button></div>
+        <div class="ui-g-2"><button pButton type="submit" label="Submit Details"
+                (click)="onRegisterClick(registrationForm)"></button></div>
+    </div>
+    <!-- <pre><p *ngIf="displayJsonBool">{{registrationForm.value | json}}</p></pre> -->
+    <div [innerHTML]="submittedFormData"></div>
+</form>
+<div>
+    <h3 class="first" style="text-align: center;">Registration Details</h3>
+    <p-table [value]="formRecords" [columns]="tableColumns" [scrollable]="true">
+        <ng-template pTemplate="colgroup" let-tableColumns>
+            <colgroup>
+                <col *ngFor="let col of tableColumns" style="width:150px;">
+                <col style="width:150px;">
+                <col style="width:150px;">
+                <col style="width:150px;">
+                <col style="width:150px;">
+                <col style="width:150px;">
+                <col style="width:150px;">
+                <col style="width:150px;">
+            </colgroup>
+        </ng-template>
+        <ng-template pTemplate="header" let-tableColumns>
+            <tr>
+                <th *ngFor="let col of tableColumns">{{col.header}}</th>
+                <th>Sate</th>
+                <th>courses</th>
+                <th>country</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr>
+                <td *ngFor="let col of columns">
+                    {{rowData[col.field]}}
+                </td>
+                <td>{{rowData.state.stateName}}</td>
+                <td>{{rowData.courses.courseName}}</td>
+                <td>{{rowData.country.counrtyName}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+<app-component-communication [templateDrivenFormData]="registrationForm" [tempateDrivenDisplayJsonStatus]="displayJsonBool"></app-component-communication>
+<p-growl [(value)]="growlMsgs"></p-growl>
