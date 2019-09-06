@@ -11,6 +11,13 @@ export class FormArraysComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
   productSuppliersForm: FormGroup;
   suppliersArray: FormArray;
+  cities = [
+    { name: 'New York', code: 'NY' },
+    { name: 'Rome', code: 'RM' },
+    { name: 'London', code: 'LDN' },
+    { name: 'Istanbul', code: 'IST' },
+    { name: 'Paris', code: 'PRS' }
+  ];
   ngOnInit() {
     this.productSuppliersForm = this.fb.group({
       productID: [''],

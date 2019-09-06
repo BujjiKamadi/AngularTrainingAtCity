@@ -52,7 +52,7 @@
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-rowData1>
-                <ng-container *ngFor="let addressAndContact of rowData1.addressAndContacts">                       
+                <ng-container *ngFor="let addressAndContact of rowData1.addressAndContacts">
                     <tr *ngFor="let deliveryAddress of addressAndContact.deliveryAddresses">
                         <td>{{rowData1.customGroupID}} </td>
                         <td>{{deliveryAddress.addressId}}</td>
@@ -67,5 +67,15 @@
                 </ng-container>
             </ng-template>
         </p-table>
+    </div>
+</div>
+<div class="ui-g" *ngIf="presentPageData">
+    <div class="ui-g-12">
+        <ul *ngFor="let object of presentPageData">
+            <li>{{object.name}} </li>
+        </ul>
+    </div>
+    <div class="ui-g-offset-6 ui-g-6">
+        <p-paginator [rows]="10" [totalRecords]="paginatorDataLength" pageLinkSize="3" (onPageChange)="paginate($event)"></p-paginator>
     </div>
 </div>

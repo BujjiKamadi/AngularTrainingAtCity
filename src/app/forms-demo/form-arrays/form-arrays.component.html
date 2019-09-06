@@ -1,3 +1,28 @@
+<div class="ui-g">
+    <div class="ui-g-12">
+        <div class="ui-g-3">
+            <h3 class="heading">Single</h3>
+            <div class="align-padding">
+                <p-dropdown [options]="cities"  placeholder="Select a City"
+                    optionLabel="name"></p-dropdown>
+            </div>
+        </div>
+        <div class="ui-g-3">
+            <h3 class="heading">Without appendTo</h3>
+            <div class="overflow-container">
+                <p-dropdown [options]="cities" placeholder="Select a City"
+                    optionLabel="name"></p-dropdown>
+            </div>
+        </div>
+        <div class="ui-g-3">
+            <h3 class="heading">appendTo = body</h3>
+            <div class="overflow-container" (scroll)='scrollHandler4($event)'>
+                <p-dropdown #singleDropdown [autoWidth]="false" [options]="cities" [(ngModel)]="selectedCity"
+                    placeholder="Select a City" optionLabel="name" appendTo="body"></p-dropdown>
+            </div>
+        </div>
+    </div>
+</div>
 <form [formGroup]="productSuppliersForm">
     <h4 align="center">Product Details</h4>
     <div class="ui-g">
@@ -14,7 +39,8 @@
         </div>
     </div><br />
     <h4 align="center">Suppliers Details</h4>
-    <div formArrayName="suppliers" *ngFor="let supplier of productSuppliersForm.get('suppliers').controls; let i=index;">
+    <div formArrayName="suppliers"
+        *ngFor="let supplier of productSuppliersForm.get('suppliers').controls; let i=index;">
         <div class="ui-g" [formGroupName]="i">
             <div class="ui-g-3">
                 <input pInputText type="text" placeholder="Enter SupplierName" formControlName="supplierName" />
@@ -30,6 +56,11 @@
             </div>
         </div>
     </div>
-    
+
     <button pButton type="submit" label="Submit Details" (click)="submitDetaisl()"></button>
 </form>
+<!-- <div>
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+</div> -->

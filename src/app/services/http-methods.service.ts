@@ -25,6 +25,9 @@ export class HttpMethodsService {
   getContentJSON() {
     return this.http.get('assets/DeliveryAddressInfo.json');
   }
+  getSampleDataForPaginator() {
+    return this.http.get('assets/SampleForPaginator.json');
+  }
   saveEmployee(employee: any) {
     const httpOptions = {
       headers: new HttpHeaders({

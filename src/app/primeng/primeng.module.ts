@@ -29,6 +29,8 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {MessagesModule} from 'primeng/messages';
 import {DialogModule} from 'primeng/dialog';
 import {AccordionModule} from 'primeng/accordion';
+import {PaginatorModule} from 'primeng/paginator';
+import {FileUploadModule} from 'primeng/fileupload';
 
 import {ConfirmationService} from 'primeng/api';
 
@@ -61,7 +63,9 @@ const primeNg = [
   ConfirmDialogModule,
   MessagesModule,
   DialogModule,
-  AccordionModule
+  AccordionModule,
+  PaginatorModule,
+  FileUploadModule
 ];
 
 @NgModule({

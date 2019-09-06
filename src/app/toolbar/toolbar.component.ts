@@ -59,10 +59,7 @@ export class ToolbarComponent implements OnInit {
         icon: 'pi pi-fw pi-pencil',
         items: [
           { label: 'Employee List', icon: 'pi pi-fw pi-plus', routerLink: '/employeeList' },
-          {
-            label: 'TemplateDrivenForms',
-            icon: 'pi pi-fw pi-external-link'
-          }
+          { label: 'Export To Excel', icon: '', routerLink: '/exportToExcel'}
         ]
       },
       {
@@ -88,6 +85,13 @@ export class ToolbarComponent implements OnInit {
         icon: '',
         items: [
           { label: 'Rxjs Demo', icon: '', routerLink: '/rxjs/Sample'}
+        ]
+      },
+      {
+        label: 'Primeng Demo',
+        icon: '',
+        items: [
+          { label: 'Paginator', icon: '', routerLink: '/paginator'}
         ]
       },
       {

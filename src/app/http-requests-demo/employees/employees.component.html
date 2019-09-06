@@ -1,5 +1,5 @@
 <div class="ui-g-offset-1 ui-g-10">
-    <p-table [value]='employees'>
+    <p-table [value]='employees' [rows]="10" [paginator]="true"  [rowsPerPageOptions]="[10,20,30]">
         <ng-template pTemplate="header">
             <tr>
                 <th>ID</th>

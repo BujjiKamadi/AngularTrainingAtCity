@@ -15,10 +15,12 @@ import { PipesModule } from './pipes/pipes.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { RouterDemoModule } from './router-demo/router-demo.module';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RxjsModule } from './rxjs/rxjs.module';
 import { SpyOnComponent } from './spy-on/spy-on.component';
 import { HttpMethodsService } from './services/http-methods.service';
+import { AuthInterceptor } from './services/auth.interceptor';
+import { PrimengDemoModule } from './primeng-demo/primeng-demo.module';
 
 @NgModule({
   declarations: [
@@ -42,9 +44,13 @@ import { HttpMethodsService } from './services/http-methods.service';
     BrowserAnimationsModule,
     FormsDemoModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    PrimengDemoModule
   ],
-  providers: [HttpMethodsService],
+  providers: [
+    HttpMethodsService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

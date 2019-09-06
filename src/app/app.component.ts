@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { environment } from './../environments/environment';
 import { HttpMethodsService } from './services/http-methods.service';
 import { HttpClient } from '@angular/common/http';
+import { TokenGenerator, TokenBase } from '../../node_modules/ts-token-generator';
 
 @Component({
   selector: 'app-root',
@@ -25,6 +26,7 @@ export class AppComponent {
     });
     this.getJsonData();
     // this.getW3schoolsData();
+    this.generateToken();
   }
 
   getJsonData() {
@@ -37,4 +39,11 @@ export class AppComponent {
   //     console.log('w3schools data ', data);
   //   });
   // }
+
+  generateToken() {
+    const token = new TokenGenerator(); // with 128bit token encode in base58
+    console.log(token.generate());
+    const token512 = new TokenGenerator({bitSize: 512, baseEncoding: TokenBase.BASE58}); // with 512bit token encode in base62
+    localStorage.setItem('idToken', token512.generate());
+  }
 }

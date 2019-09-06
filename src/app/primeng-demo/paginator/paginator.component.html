@@ -1,0 +1,12 @@
+<div class="ui-g" *ngIf="presentPageData">
+    <div class="ui-g-12">
+        <ul *ngFor="let object of presentPageData">
+            <li>{{object.name}} </li>
+        </ul>
+    </div>
+    <div class="ui-g-6">
+        <p-paginator [rows]="10" [totalRecords]="paginatorDataLength" pageLinkSize="5"
+            (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5,10,15,20]"></p-paginator>
+    </div>
+</div>
+<p-fileUpload name=""></p-fileUpload>

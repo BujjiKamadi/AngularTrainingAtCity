@@ -5,9 +5,10 @@ import { PrimengModule} from '../primeng/primeng.module';
 import { EmployeesListComponent } from './employees-list/employees-list.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { EmployeeGuardService } from './employee/employee-guard.service';
+import { ExportToExcelComponent } from './export-to-excel/export-to-excel.component';
 
 @NgModule({
-  declarations: [EmployeesListComponent, EmployeeComponent],
+  declarations: [EmployeesListComponent, EmployeeComponent, ExportToExcelComponent],
   imports: [
     CommonModule,
     PrimengModule
