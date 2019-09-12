@@ -60,4 +60,7 @@ export class HttpMethodsService {
   getEmployees1() {
     return this.http.get('/api/v1/employees');
   }
+  getfileSystemData() {
+    return this.http.get('assets/fileSystem.json');
+  }
 }

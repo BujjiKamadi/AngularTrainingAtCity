@@ -31,6 +31,7 @@ import {DialogModule} from 'primeng/dialog';
 import {AccordionModule} from 'primeng/accordion';
 import {PaginatorModule} from 'primeng/paginator';
 import {FileUploadModule} from 'primeng/fileupload';
+import {TreeTableModule} from 'primeng/treetable';
 
 import {ConfirmationService} from 'primeng/api';
 
@@ -65,7 +66,8 @@ const primeNg = [
   DialogModule,
   AccordionModule,
   PaginatorModule,
-  FileUploadModule
+  FileUploadModule,
+  TreeTableModule
 ];
 
 @NgModule({
