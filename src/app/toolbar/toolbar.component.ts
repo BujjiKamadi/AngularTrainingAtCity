@@ -95,6 +95,13 @@ export class ToolbarComponent implements OnInit {
         ]
       },
       {
+        label: 'table Demo',
+        icon: '',
+        items: [
+          { label: 'table', icon: '', routerLink: '/table'}
+        ]
+      },
+      {
         label: 'Routing Demo',
         icon: '',
         items: [

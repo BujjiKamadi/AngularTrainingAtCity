@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, OnDestroy, Output, EventEmitter, OnChanges, ElementRef  } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy, Output, EventEmitter, OnChanges, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ValidatorFn, ValidationErrors, AbstractControl, NgForm } from '@angular/forms';
 import { pwdPatternValidator, samePwdValidator, samePwdValidator1, requiredValidator } from './Validations';
 import { ComponentCommunicationComponent } from '../component-communication/component-communication.component';
@@ -39,27 +39,27 @@ export class ReactiveFormsComponent implements OnInit, OnDestroy {
       { vin: '245t2s', year: '2013', brand: 'Fiat', color: 'Red' },
     ];
     this.brands = [
-      {label: 'Audi', value: 'Audi'},
-      {label: 'BMW', value: 'BMW'},
-      {label: 'Fiat', value: 'Fiat'},
-      {label: 'Ford', value: 'Ford'},
-      {label: 'Honda', value: 'Honda'},
-      {label: 'Jaguar', value: 'Jaguar'},
-      {label: 'Mercedes', value: 'Mercedes'},
-      {label: 'Renault', value: 'Renault'},
-      {label: 'VW', value: 'VW'},
-      {label: 'Volvo', value: 'Volvo'}
-  ];
+      { label: 'Audi', value: 'Audi' },
+      { label: 'BMW', value: 'BMW' },
+      { label: 'Fiat', value: 'Fiat' },
+      { label: 'Ford', value: 'Ford' },
+      { label: 'Honda', value: 'Honda' },
+      { label: 'Jaguar', value: 'Jaguar' },
+      { label: 'Mercedes', value: 'Mercedes' },
+      { label: 'Renault', value: 'Renault' },
+      { label: 'VW', value: 'VW' },
+      { label: 'Volvo', value: 'Volvo' }
+    ];
     this.statesList = this.ComponentCommun.getStatesList();
     this.countriesList = this.ComponentCommun.getCountriesList();
     this.coursesList = this.ComponentCommun.getCoursesList();
     this.languagesList = this.ComponentCommun.getLanguagesList();
     this.registrationForm = this.fb.group({
-      firstName: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(20)]],
-      lastName: ['', [requiredValidator]],
+      firstName: [''],
+      lastName: [''],
       dateOfBirth: [''],
       gender: [''],
-      state: [''],
+      state: ['', Validators.required],
       branch: [''],
       password: ['', [pwdPatternValidator()]],
       cnfrmPwd: [''],
@@ -138,13 +138,18 @@ export class ReactiveFormsComponent implements OnInit, OnDestroy {
   onFormSubmit() {
     console.log('onFormSubmit method');
     console.log(this.registrationForm);
+    console.log(this.registrationForm.controls.lastName);
+    this.registrationForm.controls.lastName.setValidators([Validators.required]);
+    this.registrationForm.controls.lastName.updateValueAndValidity({ onlySelf: true });
+    console.log(this.registrationForm.controls.lastName);
+    console.log(this.registrationForm);
     console.log(this.registrationForm.value);
     if (this.registrationForm.valid) {
       console.log('no errors');
     } else {
 
     }
-    Object.keys(this.registrationForm.controls).forEach( key => {
+    Object.keys(this.registrationForm.controls).forEach(key => {
       if (this.registrationForm.get(key).invalid) {
         this.registrationForm.get(key).markAsTouched();
         this.registrationForm.get(key).markAsDirty();
@@ -155,5 +160,15 @@ export class ReactiveFormsComponent implements OnInit, OnDestroy {
     console.log(this.elementRef);
     // this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'beige';
     this.elementRef.nativeElement.lastChild.firstChild.style.backgroundColor = 'beige';
+  }
+  validateFirstName(event) {
+    console.log(event);
+    console.log(this.registrationForm.controls.firstName.value);
+    const regExp = /[0-9]/;
+    if (this.registrationForm.controls.firstName.value.length > 9 && (event.key !== 'Delete'  || event.key !== 'Delete')) {
+      this.registrationForm.controls.firstName.setErrors({maxLengthExceeded: true});
+      return false;
+    }
+    return true;
   }
 }

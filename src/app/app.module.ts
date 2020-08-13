@@ -21,6 +21,8 @@ import { SpyOnComponent } from './spy-on/spy-on.component';
 import { HttpMethodsService } from './services/http-methods.service';
 import { AuthInterceptor } from './services/auth.interceptor';
 import { PrimengDemoModule } from './primeng-demo/primeng-demo.module';
+import { InstructionaldocumentationComponent } from './instructionaldocumentation/instructionaldocumentation.component';
+import { InstructionalDocumentation1Component } from './instructional-documentation1/instructional-documentation1.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { PrimengDemoModule } from './primeng-demo/primeng-demo.module';
     ToolbarComponent,
     PageNotFoundComponent,
     WelcomePageComponent,
-    SpyOnComponent
+    SpyOnComponent,
+    InstructionaldocumentationComponent,
+    InstructionalDocumentation1Component
   ],
   imports: [
     BrowserModule,

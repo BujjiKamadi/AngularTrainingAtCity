@@ -1,1 +1,118 @@
-<p>table-demo works!</p>
+<!-- <h3 class="first">Basic</h3>
+<p-treeTable [value]="files1">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Name</th>
+            <th>Size</th>
+            <th>Type</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
+        <tr [ttRow]="rowNode">
+            <td>
+                <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
+                {{rowData.name}}
+            </td>
+            <td>{{rowData.size}}</td>
+            <td>{{rowData.type}}</td>
+        </tr>
+    </ng-template>
+</p-treeTable> -->
+<!-- <p-confirmDialog header="Enter PIN" icon="fa fa-question-circle" width="425" #cd>
+        <ng-template pTemplate="body">
+          <ul>
+            <li>test</li>
+          </ul>
+        </ng-template>
+          <p-footer>
+      
+              <button type="button" pButton icon="fa-close" label="No" (click)="cd.reject()"></button>
+              <button type="button" pButton icon="fa-check" label="Yes" (click)="cd.accept()"></button>
+          </p-footer>
+      </p-confirmDialog> -->
+<!-- 
+      <p-confirmDialog header="Enter PIN" icon="fa fa-question-circle" width="425" #cd>
+            <p-footer>
+                <button type="button" pButton icon="fa-close" label="No" (click)="cd.reject()"></button>
+                <button type="button" pButton icon="fa-check" label="Yes" (click)="cd.accept()"></button>
+            </p-footer>
+        </p-confirmDialog>
+
+        <button type="button" (click)="confirm()" pButton icon="pi pi-info-circle" label="Show popup"></button>
+        <div *ngIf="false">
+                <div class="confirmDialogueContent">
+                    Testing working 
+                </div>
+
+        </div> -->
+        
+<button type="button" (click)="showManageCols()" pButton icon="pi pi-info-circle" label="Show"></button>
+<p-dialog header="Manage Columns" [(visible)]="display" [style]="{width: '500px', height: '500px'}">
+    <p-orderList [value]="Indiastate">
+        <ng-template let-state pTemplate="item">
+            <div class="ui-helper-clearfix">
+                <div style="font-size:16px;float:left;margin:5px">{{state}}</div>
+            </div>
+        </ng-template>
+    </p-orderList>
+    <p-footer>
+        <button type="button" pButton (click)="showSuccess()" label="Success" class="ui-button-success"></button>
+    </p-footer>
+</p-dialog>
+
+<ul *ngFor="let item of items; index as i">
+        <li>{{i+1}} {{item}}</li>
+      </ul>
+
+
+<p-table #dt [columns]="tableColumns" [value]="dataList" >
+    <ng-template pTemplate="caption">
+            <div class="ui-helper-clearfix" style="text-align: left">
+                <button type="button" pButton icon="pi pi-file-o" iconPos="left" label="CSV" (click)="dt.exportCSV()" style="margin-right: 0.5em;"></button>
+                <button type="button" pButton icon="pi pi-file-excel" iconPos="left" label="EXCEL" (click)="exportExcel()" style="margin-right: 0.5em;" class="ui-button-success"></button>
+                <button type="button" pButton icon="pi pi-file-pdf" iconPos="left" label="PDF" (click)="exportPdf()" class="ui-button-warning"></button>
+                <button type="button" pButton icon="pi pi-file" iconPos="left" label="CSV - Selection Only" (click)="dt.exportCSV({selectionOnly:true})" style="float:right"></button>
+            </div>
+        </ng-template>
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field" style="min-width: 150px">
+                {{col.header}}
+                <p-sortIcon [field]="col.field"></p-sortIcon> 
+            </th>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr>
+                <td *ngFor="let col of columns">
+                    {{rowData[col.field]}}
+                </td>
+            </tr>
+    </ng-template>
+</p-table>
+
+<p-table #dtt  [value]="cars" selectionMode="multiple" [(selection)]="selectedCars">
+        <ng-template pTemplate="caption">
+            <div class="ui-helper-clearfix" style="text-align: left">
+                <button type="button" pButton icon="pi pi-file-o" iconPos="left" label="CSV" (click)="dtt.exportCSV()" style="margin-right: 0.5em;"></button>
+                <button type="button" pButton icon="pi pi-file-excel" iconPos="left" label="EXCEL" (click)="exportExcel()" style="margin-right: 0.5em;" class="ui-button-success"></button>
+                <button type="button" pButton icon="pi pi-file-pdf" iconPos="left" label="PDF" (click)="exportPdf()" class="ui-button-warning"></button>
+                <button type="button" pButton icon="pi pi-file" iconPos="left" label="CSV - Selection Only" (click)="dt.exportCSV({selectionOnly:true})" style="float:right"></button>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns">
+                    {{col.header}}
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr [pSelectableRow]="rowData">
+                <td *ngFor="let col of columns">
+                    {{rowData[col.field]}}
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>

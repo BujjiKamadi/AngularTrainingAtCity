@@ -2,13 +2,14 @@
     <div *ngIf="referenceFormat">
         <form [formGroup]="referenceFormat">
             <div formArrayName="referenceFormatArray">
-                <p-table [value]="referenceFormatArray1.controls">
+                <p-table [value]="referenceFormatArray1.controls" [scrollable]="true" scrollHeight="200px">
                     <ng-template pTemplate="header">
                         <tr>
                             <th>Index</th>
                             <th>Origin</th>
                             <th>Destination</th>
                             <th colspan="2">Options</th>
+                            <th>Options</th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-data let-rowIndex="rowIndex">
@@ -29,6 +30,9 @@
                             <td>
                                 <button pButton type="button" label="showMinMax"
                                     (click)="showMinMax(rowIndex)"></button>
+                            </td>
+                            <td>
+                                <p-dropdown [options]="countriesList" placeholder="Select a Country" optionLabel="counrtyName" appendTo='body'></p-dropdown>
                             </td>
                         </tr>
                     </ng-template>

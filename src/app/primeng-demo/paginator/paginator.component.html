@@ -1,4 +1,4 @@
-<div class="ui-g" *ngIf="presentPageData">
+<!-- <div class="ui-g" *ngIf="presentPageData">
     <div class="ui-g-12">
         <ul *ngFor="let object of presentPageData">
             <li>{{object.name}} </li>
@@ -8,34 +8,121 @@
         <p-paginator [rows]="10" [totalRecords]="paginatorDataLength" pageLinkSize="5" (onPageChange)="paginate($event)"
             [rowsPerPageOptions]="[5,10,15,20]"></p-paginator>
     </div>
+</div> -->
+<div class="ui-g-8">
+    <p-fileUpload mode="basic" name="demo[]" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUpload($event)">
+    </p-fileUpload>
+    <h3 class="first">Advanced</h3>
+    <p-fileUpload name="demo[]" (onUpload)="onUpload($event)" multiple="multiple" accept="image/*"
+        maxFileSize="1000000">
+        <ng-template pTemplate="content">
+            <ul *ngIf="uploadedFiles.length">
+                <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+            </ul>
+        </ng-template>
+    </p-fileUpload>
 </div>
-<p-fileUpload name=""></p-fileUpload>
+<div *ngIf="!enableTreeTable">
+    disabling tree table
+</div>
+<div class="ui-g-8" *ngIf="enableTreeTable">
+    <p-treeTable #tt [value]="files" [columns]="cols" [paginator]="true" [rows]="1" [lazy]="true" 
+    (onLazyLoad)="<loadNodes>($event)" [totalRecords]="1000" [loading]="loading" (onNodeExpand)="onNodeExpand($event)">
+        <ng-template pTemplate="caption">
+            <div style="text-align: right">
+                <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
+                <input type="text" pInputText size="50" placeholder="Global Filter"
+                    (input)="tt.filterGlobal($event.target.value, 'contains');logData();" style="width:auto">
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of cols">
+                    {{col.header}}
+                </th>
+            </tr>
+            <tr>
+                <th *ngFor="let col of cols">
+                    <input pInputText type="text"
+                        (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
+            <tr>
+                <td *ngFor="let col of cols; let i = index">
+                    <p-treeTableToggler [rowNode]="rowNode" *ngIf="i == 0"></p-treeTableToggler>
+                    <p> {{ rowNode}}</p>
+                    {{rowData[col.field]}}
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td [attr.colspan]="cols.length">No data found.</td>
+            </tr>
+        </ng-template>
+    </p-treeTable>
+</div>
+<div class="ui-g-8">
+    <p pTooltip="TooltipisdisplayedorhiddeninstantlybydefaulthoweveryoumayadddelaysusingshowDelayandhideDelaypropertieswhichacceptanumbevalueintermsofmilliseconds." tooltipPosition="top">
+        Tooltip is displayed or hidden instantly by default however you may add delays using showDelay
+        and hideDelay properties which accept a number value in terms of milliseconds.
+    </p>
+</div>
+<br>
+<div class="ui-g-12">
+    <p-panel [showHeader]="false">
+        Tooltip is displayed or hidden instantly by default however you may add delays using showDelay
+            and hideDelay properties which accept a number value in terms of milliseconds.
+            Tooltip is displayed or hidden instantly by default however you may add delays using showDelay
+            and hideDelay properties which accept a number value in terms of milliseconds.Tooltip is displayed or hidden instantly by default however you may add delays using showDelay
+            and hideDelay properties which accept a number value in terms of milliseconds.Tooltip is displayed or hidden instantly by default however you may add delays using showDelay
+            and hideDelay properties which accept a number value in terms of milliseconds.Tooltip is displayed or hidden instantly by default however you may add delays using showDelay
+            and hideDelay properties which accept a number value in terms of milliseconds.
+    </p-panel>
+</div>
 
-<p-treeTable #tt [value]="files" [columns]="cols">
-    <ng-template pTemplate="caption">
-        <div style="text-align: right">
-            <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
-            <input type="text" pInputText size="50" placeholder="Global Filter" (input)="tt.filterGlobal($event.target.value, 'contains')" style="width:auto">
-        </div>
-    </ng-template>
-    <ng-template pTemplate="header" let-columns>
-        <tr>
-            <th *ngFor="let col of cols">
-                {{col.header}}
-            </th>
-        </tr>
-        <tr>
-            <th *ngFor="let col of cols">
-                <input pInputText type="text" (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
-            </th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
-        <tr>
-            <td *ngFor="let col of cols; let i = index">
-                <p-treeTableToggler [rowNode]="rowNode" *ngIf="i == 0"></p-treeTableToggler>
-                {{rowData[col.field]}}
-            </td>
-        </tr>
-    </ng-template>
-</p-treeTable>
+<p-autoComplete [suggestions]="filteredCountriesSingle" (completeMethod)="filterCountrySingle($event)" field="name" [size]="30"
+    placeholder="Countries" [minLength]="1"></p-autoComplete>
+
+    <p-dialog header="Title" [(visible)]="display" [style]="{width: '500px', height: '500px'}">
+        <p-header>
+            Header content here
+        </p-header>
+        Content
+        <!-- <button type="button" (click)="show()">Show</button>
+        <button type="button" (click)="hide()">Hide</button> -->
+        <p-messages [(value)]="msgs" for="MessageId" ></p-messages>
+        <!-- <p-messages [(value)]="msgs1" for="MessageId1" ></p-messages> -->
+        <p-footer>
+            <button type="button" pButton (click)="showSuccess()" label="Success" class="ui-button-success"></button>
+        </p-footer>
+    </p-dialog>
+    
+    <button type="button" (click)="showDialog()" pButton icon="pi pi-info-circle" label="Show"></button>
+    <!-- <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle">
+    </p-confirmDialog>
+    <p-orderList [value]="cols">
+        <ng-template let-car pTemplate="item">
+            <div class="ui-helper-clearfix">
+                <div style="font-size:14px;float:right;margin:15px 5px 0 0">{{car.field}} - {{car.header}} </div>
+            </div>
+        </ng-template>
+    </p-orderList>
+    <div class="ui-dialog-content ui-widget-content "><i class="ng-tns-c10-14 pi pi-exclamation-triangle ui-confirmdialog-icon ng-star-inserted" ng-reflect-klass="pi pi-exclamation-triangle" 
+      ng-reflect-ng-class="ui-confirmdialog-icon" style=""></i>
+      <span class="ui-confirmdialog-message">sadfw</span></div>
+      <div class="ui-confirmdialog-message">
+hello
+      </div> -->
+
+
+      <p-confirmDialog header="Enter PIN" icon="fa fa-question-circle" width="425" #cd>
+            <p-footer>
+                <button type="button" pButton icon="fa-close" label="No" (click)="cd.reject()"></button>
+                <button type="button" pButton icon="fa-check" label="Yes" (click)="cd.accept()"></button>
+            </p-footer>
+        </p-confirmDialog>
+
+        <button type="button" (click)="confirm()" pButton icon="pi pi-info-circle" label="Show popup"></button>

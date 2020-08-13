@@ -1,68 +1,9 @@
-<div class="ui-g-12">
-    <div class="ui-g-6">
-        <p-table [value]="cars" [scrollable]="true" scrollHeight="185px" [scrollable]="true" scrollHeight="185px">
-            <ng-template pTemplate="header">
-                <tr>
-                    <th>RowIndex</th>
-                    <th>Vin</th>
-                    <th>Year</th>
-                    <th>Brand</th>
-                    <th>Color</th>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
-                <tr>
-                    <td>{{ rowIndex + 1 }}</td>
-                    <td pEditableColumn>
-                        <p-cellEditor>
-                            <ng-template pTemplate="input">
-                                <input pInputText type="text" [(ngModel)]="rowData.vin">
-                            </ng-template>
-                            <ng-template pTemplate="output">
-                                {{rowData.vin}}
-                            </ng-template>
-                        </p-cellEditor>
-                    </td>
-                    <td pEditableColumn>
-                        <p-cellEditor>
-                            <ng-template pTemplate="input">
-                                <input pInputText type="text" [(ngModel)]="rowData.year" required>
-                            </ng-template>
-                            <ng-template pTemplate="output">
-                                {{rowData.year}}
-                            </ng-template>
-                        </p-cellEditor>
-                    </td>
-                    <td pEditableColumn>
-                        <p-cellEditor>
-                            <ng-template pTemplate="input">
-                                <p-dropdown appendTo="body" [options]="brands" [(ngModel)]="rowData.brand" [style]="{'width':'100%'}">
-                                </p-dropdown>
-                            </ng-template>
-                            <ng-template pTemplate="output">
-                                {{rowData.brand}}
-                            </ng-template>
-                        </p-cellEditor>
-                    </td>
-                    <td pEditableColumn>
-                        <p-cellEditor>
-                            <ng-template pTemplate="input">
-                                <input pInputText type="text" [(ngModel)]="rowData.color">
-                            </ng-template>
-                            <ng-template pTemplate="output">
-                                {{rowData.color}}
-                            </ng-template>
-                        </p-cellEditor>
-                    </td>
-                </tr>
-            </ng-template>
-        </p-table>
-        <br />
-        <br />
-    </div>
-    <div class="ui-g-6"></div><br />
-</div>
-<h1>Reactive Forms</h1>
+
+  <span class="ui-float-label">
+        <textarea [rows]="5" [cols]="30" pInputTextarea></textarea>
+        <label for="float-input">Username</label>
+      </span>
+      <h1>Reactive Forms</h1>
 <form [formGroup]="registrationForm" (ngSubmit)="onFormSubmit()" appFocusFirstInvalidField>
     <div class="ui-g">
         <div class="ui-g-1"></div>
@@ -72,7 +13,7 @@
                 <div class="ui-g-8">
                     <div class="ui-inputgroup">
                         <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
-                        <input type="text" pInputText placeholder="Enter First Name" formControlName="firstName"
+                        <input type="text" pInputText placeholder="Enter First Name" formControlName="firstName" (keydown)="validateFirstName($event)"
                             [ngClass]="{'has-error': registrationForm.get('firstName').errors && ( registrationForm.get('firstName').touched || registrationForm.get('firstName').dirty)}">
                     </div>
                     <span class="errMsg"
@@ -83,6 +24,10 @@
                         <span
                             *ngIf="registrationForm.get('firstName').errors.minlength || registrationForm.get('firstName').errors.maxlength">
                             First Name must have greaterthan 9 characters and lessthan 20 characters
+                        </span>
+                        <span
+                            *ngIf="registrationForm.get('firstName').errors.maxLengthExceeded || registrationForm.get('firstName').errors.maxLengthExceeded">
+                            First Name must have greaterthan 10 characters
                         </span>
                     </span>
                 </div>
@@ -277,7 +222,7 @@
         <p-table [value]="formRecords" [columns]="tableColumns" [scrollable]="true" [style]="{width:'1500px'}">
             <ng-template pTemplate="colgroup" let-tableColumns>
                 <colgroup>
-                    <col *ngFor="let col of tableColumns" style="width:150px;">
+                    <col *ngFor="let col of tableColumns"  style="width:150px;">
                     <col style="width:150px;">
                     <col style="width:150px;">
                     <col style="width:150px;">
@@ -289,7 +234,10 @@
             </ng-template>
             <ng-template pTemplate="header" let-tableColumns>
                 <tr>
-                    <th *ngFor="let col of tableColumns">{{col.header}}</th>
+                    <th *ngFor="let col of tableColumns" >
+                        <div style="min-width:500px">
+                            {{col.header}}
+                        </div></th>
                     <th>Sate</th>
                     <th>courses</th>
                     <th>country</th>
@@ -367,3 +315,68 @@
 <app-component-communication [reactiveFormGroup]="registrationForm" [reactiveDisplayJsonStatus]="displayJsonBool"
     (changeChildBgColor)="ChangeBgColor()">
 </app-component-communication>
+
+<div class="ui-g-12">
+    <div class="ui-g-6">
+        <p-table [value]="cars" [scrollable]="true" scrollHeight="185px">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>RowIndex</th>
+                    <th>Vin</th>
+                    <th>Year</th>
+                    <th>Brand</th>
+                    <th>Color</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+                <tr>
+                    <td>{{ rowIndex + 1 }}</td>
+                    <td pEditableColumn>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="rowData.vin">
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{rowData.vin}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td pEditableColumn>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="rowData.year" required>
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{rowData.year}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td pEditableColumn>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <p-dropdown appendTo="body" [options]="brands" [(ngModel)]="rowData.brand" [style]="{'width':'100%'}">
+                                </p-dropdown>
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{rowData.brand}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td pEditableColumn>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="rowData.color">
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{rowData.color}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+        <br />
+        <br />
+    </div>
+    <div class="ui-g-6"></div><br />
+</div>

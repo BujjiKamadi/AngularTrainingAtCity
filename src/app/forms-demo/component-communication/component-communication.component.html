@@ -19,7 +19,12 @@
 <p-toast></p-toast>
 <div class="ui-g-12">
     <div class="ui-g-6">
-        <p-table [value]="cars" [scrollable]="true" scrollHeight="185px" [scrollable]="true" scrollHeight="185px">
+        <p-table #dt [value]="cars" [scrollable]="true" scrollHeight="185px">
+            <ng-template pTemplate="caption">
+                    <div class="ui-helper-clearfix" style="text-align: left">
+                        <button type="button" pButton icon="pi pi-file-o" iconPos="left" label="CSV" (click)="dt.exportCSV()" style="margin-right: 0.5em;"></button>
+                    </div>
+            </ng-template>
             <ng-template pTemplate="header">
                 <tr>
                     <th>RowIndex</th>
@@ -79,5 +84,31 @@
         <br />
         <br />
     </div>
-    <div class="ui-g-6"></div><br />
+    <div class="ui-g-7"></div><br />
+    <div class="ui-g-6" *ngIf="sampleOptions">
+        <p-table #dt1 [value]="sampleOptions" [scrollable]="true" scrollHeight="185px">
+                <ng-template pTemplate="caption">
+                        <div class="ui-helper-clearfix" style="text-align: left">
+                            <button type="button" pButton icon="pi pi-file-o" iconPos="left" label="CSV" (click)="dt1.exportCSV()" style="margin-right: 0.5em;"></button>
+                        </div>
+                </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: 8px;"></th>
+                    <th style="width: 15em;">sample value type</th>
+                    <th>sample value </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+                <tr>
+                    <td style="width: 8px;">{{rowIndex + 1}} </td>
+                    <td style="width: 15em;">
+                        <p-dropdown [options]="brands" >
+                        </p-dropdown>
+                    </td>
+                    <td>{{ rowData.sampleValue}} </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
 </div>

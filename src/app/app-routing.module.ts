@@ -20,6 +20,7 @@ import { AppRouteGuardService } from './app-route-guard.service';
 import { SampleComponent } from './rxjs/sample/sample.component';
 import { ReferenceFormatComponent } from './forms-demo/reference-format/reference-format.component';
 import { PaginatorComponent } from './primeng-demo/paginator/paginator.component';
+import { TableDemoComponent } from './primeng-demo/table-demo/table-demo.component';
 
 // import { DirectivesDemoComponent} from './directives/directives-demo/directives-demo.component';
 
@@ -43,6 +44,7 @@ const routes: Routes = [
   },
   { path: 'templateDrivenForms', component: TemplateFormsComponent },
   { path: 'paginator', component: PaginatorComponent },
+  { path: 'table', component: TableDemoComponent },
   { path: 'employeeList', component: EmployeesListComponent },
   { path: 'exportToExcel', component: ExportToExcelComponent},
   { path: 'employee/:id', component: EmployeeComponent, canActivate: [EmployeeGuardService] },

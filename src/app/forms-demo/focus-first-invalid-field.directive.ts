@@ -13,7 +13,12 @@ export class FocusFirstInvalidFieldDirective {
     const invalidElements = this.el.nativeElement.querySelectorAll('.ng-invalid');
     console.log(invalidElements);
     if (invalidElements.length > 0) {
-      invalidElements[0].focus();
+      console.log(invalidElements[1]);
+      console.log(invalidElements[1].getElementsByTagName('input')[0]);
+      invalidElements[1].getElementsByTagName('input')[0].focus();
+      // invalidElements[0].focus();
+      console.log(invalidElements[1].attributes);
+      console.log();
     }
   }
 }

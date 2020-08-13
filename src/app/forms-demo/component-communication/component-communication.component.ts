@@ -16,6 +16,8 @@ export class ComponentCommunicationComponent implements OnInit {
   @Output() changeChildBgColor = new EventEmitter();
   cars: any[];
   brands: any[];
+  sampleOptions: any[];
+  typeOptions: any[];
   states: any[] = [
     { stateID: 1, stateName: 'Andhra Pradesh' },
     { stateID: 2, stateName: 'ArunaChal Pradesh' },
@@ -61,17 +63,30 @@ export class ComponentCommunicationComponent implements OnInit {
       { vin: '245t2s', year: '2013', brand: 'Fiat', color: 'Red' },
     ];
     this.brands = [
-      {label: 'Audi', value: 'Audi'},
-      {label: 'BMW', value: 'BMW'},
-      {label: 'Fiat', value: 'Fiat'},
-      {label: 'Ford', value: 'Ford'},
-      {label: 'Honda', value: 'Honda'},
-      {label: 'Jaguar', value: 'Jaguar'},
-      {label: 'Mercedes', value: 'Mercedes'},
-      {label: 'Renault', value: 'Renault'},
-      {label: 'VW', value: 'VW'},
-      {label: 'Volvo', value: 'Volvo'}
-  ];
+      { label: 'Audi', value: 'Audi' },
+      { label: 'BMW', value: 'BMW' },
+      { label: 'Fiat', value: 'Fiat' },
+      { label: 'Ford', value: 'Ford' },
+      { label: 'Honda', value: 'Honda' },
+      { label: 'Jaguar', value: 'Jaguar' },
+      { label: 'Mercedes', value: 'Mercedes' },
+      { label: 'Renault', value: 'Renault' },
+      { label: 'VW', value: 'VW' },
+      { label: 'Volvo', value: 'Volvo' }
+    ];
+
+    this.sampleOptions = [
+      { type: 'Alpha', sampleValue: 'q' },
+      { type: 'Numeric', sampleValue: '5' },
+      { type: 'Alpha Numeric', sampleValue: 'u' },
+      { type: 'Specific Character', sampleValue: 'l' },
+    ];
+    this.typeOptions = [
+      { label: 'Alpha', value: 'Alpha' },
+      { label: 'AlphaNumeric', value: 'Alpha Numeric' },
+      { label: 'Numeric', value: 'Numeric' },
+      { label: 'Specific', value: 'Specific Character' }
+    ];
   }
   displayedJsonDataInChild(status: boolean): void {
     if (status) {

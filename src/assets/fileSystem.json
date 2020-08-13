@@ -33,16 +33,15 @@
                 },
                 {
                     "data":{
-                        "name":"Home",
-                        "size":"20kb",
-                        "type":"Folder"
+                        "namee":"Home",
+                        "sizee":"20kb"
                     },
                     "children":[
                         {
                             "data":{
-                                "name":"Invoices",
-                                "size":"20kb",
-                                "type":"Text"
+                                "class":"Invoices",
+                                "roll":"20kb",
+                                "pay":"Text"
                             }
                         }
                     ]

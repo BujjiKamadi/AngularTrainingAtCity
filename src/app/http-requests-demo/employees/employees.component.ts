@@ -9,7 +9,7 @@ import { ConfigService } from 'src/app/services/config.service';
   selector: 'app-employees',
   templateUrl: './employees.component.html',
   styleUrls: ['./employees.component.scss'],
-  providers: [HttpMethodsService, , ConfirmationService, MessageService, ConfigService]
+  providers: [HttpMethodsService, ConfirmationService, MessageService, ConfigService]
 })
 export class EmployeesComponent implements OnInit {
   employees: any[];

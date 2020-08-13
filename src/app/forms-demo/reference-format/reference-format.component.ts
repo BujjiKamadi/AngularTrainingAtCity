@@ -11,11 +11,20 @@ export class ReferenceFormatComponent implements OnInit {
   minMaxOptionsGroup: FormGroup;
   presentRowIndexMinMaxGroup = 0;
   display: boolean;
+  countries: any;
   constructor(
     private fb: FormBuilder
   ) { }
 
   ngOnInit() {
+
+    this.countries= [
+      { counrtyName: 'Australia', counrtyCode: 'AU' },
+      { counrtyName: 'Afghanistan', counrtyCode: 'AFG' },
+      { counrtyName: 'Bangladesh', counrtyCode: 'BNG' },
+      { counrtyName: 'Cambodia', counrtyCode: 'CBD' },
+      { counrtyName: 'India', counrtyCode: 'IND' }
+    ];
     this.referenceFormat = this.fb.group({
       referenceFormatArray: this.fb.array([
         this.addNewReferenceFormat()
@@ -29,6 +38,7 @@ export class ReferenceFormatComponent implements OnInit {
         this.addMinMaxValues()
       ])
     });
+
   }
   get referenceFormatArray1() { return this.referenceFormat.get('referenceFormatArray') as FormArray; }
   get minMaxValuesArray() { return this.minMaxOptionsGroup.get('minMaxOptionsArray') as FormArray; }
